@@ -1,9 +1,0 @@
-/home/greentea/Godot/Projects/SoccerSave/.mono/temp/obj/Debug/SoccerSave.csproj.AssemblyReference.cache
-/home/greentea/Godot/Projects/SoccerSave/.mono/temp/obj/Debug/SoccerSave.GeneratedMSBuildEditorConfig.editorconfig
-/home/greentea/Godot/Projects/SoccerSave/.mono/temp/obj/Debug/SoccerSave.AssemblyInfoInputs.cache
-/home/greentea/Godot/Projects/SoccerSave/.mono/temp/obj/Debug/SoccerSave.AssemblyInfo.cs
-/home/greentea/Godot/Projects/SoccerSave/.mono/temp/obj/Debug/SoccerSave.csproj.CoreCompileInputs.cache
-/home/greentea/Godot/Projects/SoccerSave/.mono/temp/bin/Debug/SoccerSave.dll
-/home/greentea/Godot/Projects/SoccerSave/.mono/temp/bin/Debug/SoccerSave.pdb
-/home/greentea/Godot/Projects/SoccerSave/.mono/temp/obj/Debug/SoccerSave.dll
-/home/greentea/Godot/Projects/SoccerSave/.mono/temp/obj/Debug/SoccerSave.pdb
