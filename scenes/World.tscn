@@ -1,0 +1,52 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://scenes/Characters/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/Enviormental/Floor.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/SwipeDetector.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/Enviormental/Goal.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scripts/World.cs" type="Script" id=5]
+[ext_resource path="res://scenes/Ball.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/GameTimers.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/Enviormental/GoalLines.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/MenuOverlay.tscn" type="PackedScene" id=9]
+
+[sub_resource type="ProceduralSky" id=1]
+sky_top_color = Color( 1, 1, 1, 1 )
+sky_horizon_color = Color( 1, 1, 0.980392, 1 )
+sun_color = Color( 1, 0.996078, 0.811765, 1 )
+sun_latitude = 0.0
+sun_angle_min = 15.0
+sun_angle_max = 180.0
+sun_curve = 0.0707107
+
+[sub_resource type="Environment" id=2]
+background_mode = 2
+background_sky = SubResource( 1 )
+
+[node name="World" type="Spatial"]
+script = ExtResource( 5 )
+
+[node name="GameTimers" parent="." instance=ExtResource( 7 )]
+
+[node name="SwipeDetector" parent="." instance=ExtResource( 3 )]
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
+
+[node name="Floor" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -90 )
+
+[node name="Goal" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5 )
+
+[node name="Ball" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -100 )
+gravity_scale = 1.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 2 )
+
+[node name="GoalLines" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1.7, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 5 )
+
+[node name="MenuOverlay" parent="." instance=ExtResource( 9 )]

@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/goal_lines.obj-366f159952680c67f656499d802d6595.mesh"
+
+[deps]
+
+files=[ "res://.import/goal_lines.obj-366f159952680c67f656499d802d6595.mesh" ]
+
+source_file="res://assets/meshes/envi/goal_lines.obj"
+dest_files=[ "res://.import/goal_lines.obj-366f159952680c67f656499d802d6595.mesh", "res://.import/goal_lines.obj-366f159952680c67f656499d802d6595.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286
