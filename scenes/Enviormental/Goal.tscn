@@ -20,11 +20,6 @@ extents = Vector3( 40, 20, 2 )
 [node name="Goal" type="StaticBody"]
 script = ExtResource( 2 )
 
-[node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 30 )
-fov = 80.0
-far = 300.0
-
 [node name="LeftSide" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, 6, 15 )
 shape = SubResource( 3 )

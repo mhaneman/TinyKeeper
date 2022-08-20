@@ -50,3 +50,10 @@ environment = SubResource( 2 )
 transform = Transform( 1.7, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 5 )
 
 [node name="MenuOverlay" parent="." instance=ExtResource( 9 )]
+
+[node name="CameraPivot" type="Spatial" parent="."]
+
+[node name="Camera" type="Camera" parent="CameraPivot"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 20 )
+fov = 80.0
+far = 200.0
