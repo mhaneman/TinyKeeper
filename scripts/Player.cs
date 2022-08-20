@@ -10,6 +10,13 @@ public class Player : KinematicBody
 	private float Friction = 0.2f;
 
 	private Vector3 velocity;
+	
+	private Particles MotionPoofs;
+	
+	public override void _Ready()
+	{
+		MotionPoofs = GetNode<Particles>("MotionPoofs");
+	}
 
 	/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 	/* Physics */
@@ -18,6 +25,11 @@ public class Player : KinematicBody
 	{
 		applyPhysics();
 		gravityPhysics();
+		
+		if (velocity.LengthSquared() > 10f)
+			MotionPoofs.Emitting = true;
+		else
+			MotionPoofs.Emitting = false;
 	}
 
 	private void gravityPhysics()
@@ -47,11 +59,33 @@ public class Player : KinematicBody
 		velocity.x = dir.x * jumpPowerHoriz;
 		
 		// I dont know why this is backwards... but it is
-		if (dir.x > 0.5f)
-			this.RotateZ(-1.57f);
+		
+		if (dir.y < 0)
+		{
+			if (dir.x > 0.5f)
+				this.RotateZ(-1.57f);
 
-		if (dir.x < -0.5f)
-			this.RotateZ(1.57f);
+			if (dir.x < -0.5f)
+				this.RotateZ(1.57f);	
+		} 
+		else 
+		{
+			if (dir.x > 0f)
+				this.RotateZ(-1.57f);
+
+			if (dir.x < -0f)
+				this.RotateZ(1.57f);	
+		}
+	}
+	
+	private void on_Held(string direction)
+	{
+		/*
+		if (direction == "left")
+			velocity.x = -5f;
+		else
+			velocity.x = 5f;
+		*/
 	}
 
 	private void on_Reset()

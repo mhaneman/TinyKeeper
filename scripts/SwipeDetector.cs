@@ -4,6 +4,8 @@ using System;
 public class SwipeDetector : Node
 {
 	[Signal] delegate void Swiped(Vector2 dir);
+	[Signal] delegate void Held(string direction);
+	
 	private Vector2 start_pos;
 	private bool can_detect = false;
 	private float detect_radius = 100f;
@@ -30,10 +32,19 @@ public class SwipeDetector : Node
 			if (displ >= detect_radius)
 			{
 				// then figure out what direction that is and send signal
-                Vector2 dir = (cur_pos - start_pos).Normalized();
+				Vector2 dir = (cur_pos - start_pos).Normalized();
 				EmitSignal("Swiped", dir);
 				can_detect = false;	
-			}	
+			}
+			/*
+			else 
+			{
+				if (cur_pos.x < GetViewport().Size.x / 2)
+					EmitSignal("Held", "left");
+				else 
+					EmitSignal("Held", "right");
+			}
+			*/
 		}
 	}
 }

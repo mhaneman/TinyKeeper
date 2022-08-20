@@ -20,13 +20,11 @@ public class GameTimers : Node
 
 	private void on_shoot_timeout()
 	{
-		GD.Print("GameTimer shoot");
 		EmitSignal("Shoot");
 	}
 
 	private void on_reset_timeout()
 	{
-		GD.Print("GameTimer reset");
 		shoot.Start();
 		EmitSignal("Reset");
 	}

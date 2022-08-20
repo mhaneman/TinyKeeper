@@ -5,31 +5,32 @@ using System.Collections.Generic;
 public class Ball : RigidBody
 {
 	Random rand = new Random();
-	List<Vector3> impulses = new List<Vector3>();
 	float power = 35f;
-	float horiz_max = 6f;
-	float vert_max = 6f;
+	float horiz_max = 5f;
+	float vert_max = 5f;
 	
 	Vector3 pos = new Vector3(0f, 2f, -90f);
 
 	public override void _Ready()
 	{
 		on_Reset();
-		// straight shots
-		impulses.Add(new Vector3(0f, vert_max, power));
-		impulses.Add(new Vector3(-horiz_max, 0f, power));
-		impulses.Add(new Vector3(horiz_max, 0f, power));
-		impulses.Add(new Vector3(-horiz_max, vert_max, power));
-		impulses.Add(new Vector3(horiz_max, vert_max, power));
 	} 
+	
+	private void straightShot()
+	{
+		float w1 = (float) ((rand.NextDouble() * 2) - 1f);
+		float w2 = (float) ((rand.NextDouble() * 2) - 1f);
+		
+		Vector3 impulse = new Vector3(horiz_max * w1, vert_max * w2, power);
+		this.ApplyImpulse(Vector3.Zero, impulse);
+	}
 	
 	/* ~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 	/* Signals */
 
 	private void on_Shoot()
 	{
-		this.ApplyImpulse(Vector3.Zero, impulses[rand.Next(impulses.Count - 1)]);
-		GD.Print("shoot");
+		straightShot();
 	}
 
 	private void on_Reset()
@@ -41,7 +42,5 @@ public class Ball : RigidBody
 		t.origin = pos;
 		t.basis = Basis.Identity;
 		this.GlobalTransform = t;
-		
-		GD.Print("reset");
 	}
 }

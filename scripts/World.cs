@@ -21,6 +21,7 @@ public class World : Spatial
 		Goal = GetNode<StaticBody>("Goal");
 
 		SwipeDetector.Connect("Swiped", Player, "on_Swiped");
+		SwipeDetector.Connect("Held", Player, "on_Held");
 		
 		GameTimers.Connect("Shoot", Ball, "on_Shoot");
 		GameTimers.Connect("Reset", Ball, "on_Reset");

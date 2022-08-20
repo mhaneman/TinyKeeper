@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scripts/Player.cs" type="Script" id=1]
 [ext_resource path="res://assets/characters/test_goalie.png" type="Texture" id=2]
@@ -13,6 +13,10 @@ size = Vector2( 3, 8 )
 flags_transparent = true
 albedo_texture = ExtResource( 2 )
 
+[sub_resource type="ParticlesMaterial" id=5]
+
+[sub_resource type="QuadMesh" id=6]
+
 [node name="Player" type="KinematicBody"]
 axis_lock_motion_z = true
 move_lock_z = true
@@ -25,3 +29,12 @@ shape = SubResource( 1 )
 [node name="Bill" type="MeshInstance" parent="."]
 mesh = SubResource( 3 )
 material/0 = SubResource( 4 )
+
+[node name="MotionPoofs" type="Particles" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0 )
+emitting = false
+amount = 3
+lifetime = 0.35
+local_coords = false
+process_material = SubResource( 5 )
+draw_pass_1 = SubResource( 6 )
