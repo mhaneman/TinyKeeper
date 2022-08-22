@@ -11,11 +11,10 @@ public class Player : KinematicBody
 
 	private Vector3 velocity;
 	
-	private Particles MotionPoofs;
-	
+	private MeshInstance mesh;
 	public override void _Ready()
 	{
-		MotionPoofs = GetNode<Particles>("MotionPoofs");
+		mesh = GetNode<MeshInstance>("Bill");
 	}
 
 	/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
@@ -25,11 +24,6 @@ public class Player : KinematicBody
 	{
 		applyPhysics();
 		gravityPhysics();
-		
-		if (velocity.LengthSquared() > 10f)
-			MotionPoofs.Emitting = true;
-		else
-			MotionPoofs.Emitting = false;
 	}
 
 	private void gravityPhysics()
