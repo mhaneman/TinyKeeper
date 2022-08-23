@@ -6,7 +6,7 @@ public class World : Spatial
 	 private Node SwipeDetector;
 	 private KinematicBody Player;
 	 private RigidBody Ball;
-	 private StaticBody Goal;
+	 private StaticBody Net;
 
 	 private Node GameTimers;
 	 private CanvasLayer MenuOverlay;
@@ -18,16 +18,15 @@ public class World : Spatial
 		SwipeDetector = GetNode<Node>("SwipeDetector");
 		Player = GetNode<KinematicBody>("Player");
 		Ball = GetNode<RigidBody>("Ball");
-		Goal = GetNode<StaticBody>("Goal");
+		Net = GetNode<StaticBody>("Net");
 
 		SwipeDetector.Connect("Swiped", Player, "on_Swiped");
-		SwipeDetector.Connect("Held", Player, "on_Held");
 		
 		GameTimers.Connect("Shoot", Ball, "on_Shoot");
 		GameTimers.Connect("Reset", Ball, "on_Reset");
 		GameTimers.Connect("Reset", Player, "on_Reset");
 
-		Goal.Connect("Missed", MenuOverlay, "on_UpdateScore");
+		Net.Connect("Missed", MenuOverlay, "on_UpdateScore");
 
 		
 	}
