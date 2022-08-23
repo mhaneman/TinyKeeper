@@ -38,6 +38,7 @@ public class Goal : StaticBody
 		MeshInstance newCross = (MeshInstance) Cross.Instance();
 		Spatial n = (Spatial) body;
 		Transform loc = n.GlobalTransform;
+		loc.basis = Basis.Identity;
 		newCross.GlobalTransform = loc;
 		AddChild(newCross);
 		EmitSignal("Scored");

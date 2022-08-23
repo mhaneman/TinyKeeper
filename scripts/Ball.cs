@@ -68,11 +68,26 @@ public class Ball : RigidBody
 	private void on_Shoot()
 	{
 		float w1 = (float) rand.NextDouble() * 0.4f - 0.2f;
-		Vector3 dir = new Vector3(w1, 0f, 1f).Normalized();
+		float w2 = (float) rand.NextDouble() * 0.4f;
+
+		Vector3 dir = new Vector3(w1, w2, 1f).Normalized();
 		float power = 20f;
 
 		setShot(dir, power);
-		// setMagnus(Vector3.Down, 5f);
+
+		if (Mathf.Abs(w1) < 0.1f && w2 > 0.08f)
+		{
+			if (w1 < 0)
+				setMagnus(Vector3.Down, 5f);
+			else
+				setMagnus(Vector3.Up, 5f);
+		}
+		else if (w2 > 0.25) 
+		{
+			setMagnus(Vector3.Right, 16f);
+		}
+		GD.Print("Weight 1: ", w1);
+		GD.Print("Weight 2: ", w2);
 	}
 
 	private void on_Reset()
