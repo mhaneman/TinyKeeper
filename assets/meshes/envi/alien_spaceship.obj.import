@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/alien_spaceship.obj-91af77bb4f9070e2c49427bcd7737ec1.mesh"
+
+[deps]
+
+files=[ "res://.import/alien_spaceship.obj-91af77bb4f9070e2c49427bcd7737ec1.mesh" ]
+
+source_file="res://assets/meshes/envi/alien_spaceship.obj"
+dest_files=[ "res://.import/alien_spaceship.obj-91af77bb4f9070e2c49427bcd7737ec1.mesh", "res://.import/alien_spaceship.obj-91af77bb4f9070e2c49427bcd7737ec1.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

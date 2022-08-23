@@ -9,12 +9,22 @@ public class Goal : StaticBody
 	private Area missed;
 	private Area scored;
 
-	private PackedScene Cross;
-	private PackedScene Circle;
+	private PackedScene CrossScene;
+	private PackedScene CircleScene;
+
+	private MeshInstance Cross;
+	private MeshInstance Circle;
 	public override void _Ready()
 	{
-		Cross = (PackedScene) ResourceLoader.Load("res://scenes/Items/Cross.tscn");
-		Circle = (PackedScene) ResourceLoader.Load("res://scenes/Items/Circle.tscn");
+		CrossScene = (PackedScene) ResourceLoader.Load("res://scenes/Items/Cross.tscn");
+		Cross = (MeshInstance) CrossScene.Instance();
+		this.CallDeferred("add_child", Cross);
+		Cross.Visible = false;
+
+		CircleScene = (PackedScene) ResourceLoader.Load("res://scenes/Items/Circle.tscn");
+		Circle = (MeshInstance) CircleScene.Instance();
+		this.CallDeferred("add_child", Circle);
+		Circle.Visible = false;
 
 		missed = GetNode<Area>("Missed");
 		scored = GetNode<Area>("Scored");
@@ -23,24 +33,33 @@ public class Goal : StaticBody
 		scored.Connect("body_entered", this, "on_Scored");
 	}
 
-	private void on_Missed(object body)
+	private Transform getLoc(object body)
 	{
-		MeshInstance newCircle = (MeshInstance) Circle.Instance();
 		Spatial n = (Spatial) body;
 		Transform loc = n.GlobalTransform;
-		newCircle.GlobalTransform = loc;
-		AddChild(newCircle);
+		loc.basis = Basis.Identity;
+		return loc;
+	}
+
+	private void on_Missed(object body)
+	{
+		Transform loc = getLoc(body);
+		Circle.GlobalTransform = loc;
+		Circle.Visible = true;
 		EmitSignal("Missed");
 	}
 
 	private void on_Scored(object body)
 	{
-		MeshInstance newCross = (MeshInstance) Cross.Instance();
-		Spatial n = (Spatial) body;
-		Transform loc = n.GlobalTransform;
-		loc.basis = Basis.Identity;
-		newCross.GlobalTransform = loc;
-		AddChild(newCross);
+		Transform loc = getLoc(body);
+		Cross.GlobalTransform = loc;
+		Cross.Visible = true;
 		EmitSignal("Scored");
+	}
+
+	private void on_Reset()
+	{
+		Cross.Visible = false;
+		Circle.Visible = false;
 	}
 }

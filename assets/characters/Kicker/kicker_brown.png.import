@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/test_goalie.png-933e93ee5781d74743d30d40f398f714.s3tc.stex"
-path.etc2="res://.import/test_goalie.png-933e93ee5781d74743d30d40f398f714.etc2.stex"
+path.s3tc="res://.import/kicker_brown.png-1c8cdcc3ee4104779c13362687be6db7.s3tc.stex"
+path.etc2="res://.import/kicker_brown.png-1c8cdcc3ee4104779c13362687be6db7.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/characters/test_goalie.png"
-dest_files=[ "res://.import/test_goalie.png-933e93ee5781d74743d30d40f398f714.s3tc.stex", "res://.import/test_goalie.png-933e93ee5781d74743d30d40f398f714.etc2.stex" ]
+source_file="res://assets/characters/Kicker/kicker_brown.png"
+dest_files=[ "res://.import/kicker_brown.png-1c8cdcc3ee4104779c13362687be6db7.s3tc.stex", "res://.import/kicker_brown.png-1c8cdcc3ee4104779c13362687be6db7.etc2.stex" ]
 
 [params]
 
@@ -22,8 +22,8 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=true
-flags/filter=true
-flags/mipmaps=true
+flags/filter=false
+flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=1
 process/fix_alpha_border=true

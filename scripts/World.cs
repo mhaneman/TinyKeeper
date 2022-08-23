@@ -25,6 +25,7 @@ public class World : Spatial
 		GameTimers.Connect("Shoot", Ball, "on_Shoot");
 		GameTimers.Connect("Reset", Ball, "on_Reset");
 		GameTimers.Connect("Reset", Player, "on_Reset");
+		GameTimers.Connect("Reset", Net, "on_Reset");
 
 		Net.Connect("Missed", MenuOverlay, "on_UpdateScore");
 

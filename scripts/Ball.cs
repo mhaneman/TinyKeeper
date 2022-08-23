@@ -8,9 +8,7 @@ public class Ball : RigidBody
 	
 	Vector3 inital_pos;
 	
-	float shot_power = 0f;
 	float mag_power = 0f;
-	Vector3 shot_dir = Vector3.Zero;
 	Vector3 mag_dir = Vector3.Zero;
 
 	private Particles SpeedParticles;
@@ -67,7 +65,8 @@ public class Ball : RigidBody
 
 	private void on_Shoot()
 	{
-		float w1 = (float) rand.NextDouble() * 0.4f - 0.2f;
+		float w0 = rand.Next(2) == 0 ? -1f : 1f;
+		float w1 = (float) (rand.NextDouble() * 0.18f + 0.19f) * w0;
 		float w2 = (float) rand.NextDouble() * 0.4f;
 
 		Vector3 dir = new Vector3(w1, w2, 1f).Normalized();
