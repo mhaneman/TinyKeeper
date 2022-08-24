@@ -1,9 +1,0 @@
-[gd_scene load_steps=3 format=2]
-
-[ext_resource path="res://assets/meshes/envi/goal_lines.obj" type="ArrayMesh" id=1]
-
-[sub_resource type="SpatialMaterial" id=1]
-
-[node name="GoalLines" type="MeshInstance"]
-mesh = ExtResource( 1 )
-material/0 = SubResource( 1 )

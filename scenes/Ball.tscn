@@ -1,28 +1,18 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scripts/Ball.cs" type="Script" id=1]
-[ext_resource path="res://assets/particles/ball_particle.png" type="Texture" id=2]
 [ext_resource path="res://scenes/Items/SoccerBall.tscn" type="PackedScene" id=3]
 
 [sub_resource type="PhysicsMaterial" id=4]
 bounce = 0.1
 
 [sub_resource type="SphereShape" id=1]
-radius = 0.975001
-
-[sub_resource type="ParticlesMaterial" id=5]
-
-[sub_resource type="SpatialMaterial" id=7]
-flags_transparent = true
-albedo_texture = ExtResource( 2 )
-
-[sub_resource type="QuadMesh" id=6]
-material = SubResource( 7 )
+radius = 1.5
 
 [node name="Ball" type="RigidBody"]
 mass = 0.3
 physics_material_override = SubResource( 4 )
-gravity_scale = 2.0
+gravity_scale = 3.0
 contacts_reported = 1
 contact_monitor = true
 script = ExtResource( 1 )
@@ -31,9 +21,4 @@ script = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="soccer_ball" parent="." instance=ExtResource( 3 )]
-
-[node name="SpeedParticles" type="Particles" parent="."]
-lifetime = 0.5
-local_coords = false
-process_material = SubResource( 5 )
-draw_pass_1 = SubResource( 6 )
+transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0 )

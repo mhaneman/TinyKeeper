@@ -5,9 +5,11 @@ public class Goal : StaticBody
 {
 	[Signal] delegate void Missed();
 	[Signal] delegate void Scored();
+	[Signal] delegate void InGoalieZone();
 
 	private Area missed;
 	private Area scored;
+	private Area goalieZone;
 
 	private PackedScene CrossScene;
 	private PackedScene CircleScene;
@@ -28,9 +30,11 @@ public class Goal : StaticBody
 
 		missed = GetNode<Area>("Missed");
 		scored = GetNode<Area>("Scored");
+		goalieZone = GetNode<Area>("GoalieZone");
 
 		missed.Connect("body_entered", this, "on_Missed");
 		scored.Connect("body_entered", this, "on_Scored");
+		goalieZone.Connect("body_entered", this, "on_GoalieZone");
 	}
 
 	private Transform getLoc(object body)
@@ -55,6 +59,11 @@ public class Goal : StaticBody
 		Cross.GlobalTransform = loc;
 		Cross.Visible = true;
 		EmitSignal("Scored");
+	}
+	
+	private void on_GoalieZone(object body)
+	{
+		EmitSignal("InGoalieZone");
 	}
 
 	private void on_Reset()
