@@ -31,7 +31,7 @@ public class Kicker : RigidBody
 	
 	private void on_BodyEntered(object body)
 	{
-		if (body is RigidBody && ((RigidBody) body).Name == "Ball")
+		if (body is Ball)
 		{
 			((RigidBody) body).LinearVelocity = Vector3.Zero;
 			((RigidBody) body).AngularVelocity = Vector3.Zero;

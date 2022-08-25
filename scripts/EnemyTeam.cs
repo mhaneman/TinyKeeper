@@ -7,8 +7,9 @@ public class EnemyTeam : Spatial
 	public List<RigidBody> Kickers {get; set; }
 	
 	// max passes should be 1 but make it 50/50 for 1 and 2
+	private Random rand = new Random();
 	public int curr_passes = 0;
-	public int max_passes = 2;
+	public int max_passes = 1;
 	
 	public float Speed = 0.38f;
 	private float SpeedMax = 0.5f;

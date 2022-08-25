@@ -21,8 +21,8 @@ public class Ball : RigidBody
 		float dist = curr_pos.DistanceTo(Vector3.Zero);
 		float power = Mathf.Pow(dist, 0.9f) * SpeedRatio;
 		
-		Vector3 left = curr_pos.DirectionTo(new Vector3 (-12, 12, 0));
-		Vector3 right = curr_pos.DirectionTo(new Vector3 (12, 12, 0));
+		Vector3 left = curr_pos.DirectionTo(new Vector3 (-13.5f, 12, 0));
+		Vector3 right = curr_pos.DirectionTo(new Vector3 (13.5f, 12, 0));
 		float w1 = (float) rand.NextDouble() * 0.1f;
 		float w2 = (float) rand.NextDouble() * 0.2f;
 		

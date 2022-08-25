@@ -10,6 +10,7 @@ public class Player : KinematicBody
 	private float Friction = 0.2f;
 
 	private Vector3 velocity;
+	private float theta = 0f;
 	
 	private MeshInstance mesh;
 	public override void _Ready()
@@ -24,6 +25,11 @@ public class Player : KinematicBody
 	{
 		applyPhysics();
 		gravityPhysics();
+		
+		if (IsOnFloor() && velocity.Length() < 0.2f)
+			theta = 0f;
+			
+		this.Rotation = Vector3.Forward * theta;
 	}
 
 	private void gravityPhysics()
@@ -60,28 +66,30 @@ public class Player : KinematicBody
 		if (dir.y < 0)
 		{
 			if (dir.x > 0.4f)
-				this.RotateZ(-1.57f);
+				theta += 1.57f;
 
 			if (dir.x < -0.4f)
-				this.RotateZ(1.57f);	
+				theta += -1.57f;
 		} 
 		else 
 		{
 			if (dir.x > 0f)
-				this.RotateZ(-1.57f);
+				theta += 1.57f;
 
 			if (dir.x < -0f)
-				this.RotateZ(1.57f);	
+				theta += -1.57f;
 		}
 	}
 
 	private void on_Reset()
 	{
+		/*
 		this.velocity = Vector3.Zero;
 
 		Transform t = new Transform();
 		t.origin = new Vector3(0f, 2f, -3f);
 		t.basis = Basis.Identity;
 		this.GlobalTransform = t;
+		*/
 	}
 }
