@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://scenes/Characters/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Enviormental/Envi.tscn" type="PackedScene" id=2]
@@ -8,6 +8,10 @@
 [ext_resource path="res://scenes/Ball.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/GameTimers.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/Characters/EnemyTeam.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/textures/ball_shadow.png" type="Texture" id=9]
+[ext_resource path="res://scripts/BallShadowRayCast.cs" type="Script" id=10]
+[ext_resource path="res://scripts/PlayerShadowRayCast.cs" type="Script" id=11]
+[ext_resource path="res://scenes/Enviormental/ScoreBoard.tscn" type="PackedScene" id=12]
 
 [sub_resource type="ProceduralSky" id=1]
 sky_top_color = Color( 0, 0, 0, 1 )
@@ -35,8 +39,40 @@ script = ExtResource( 5 )
 [node name="Player" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -1 )
 
+[node name="RemoteTransform" type="RemoteTransform" parent="Player"]
+remote_path = NodePath("../../PlayerShadow")
+update_rotation = false
+update_scale = false
+
+[node name="PlayerShadow" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -1 )
+enabled = true
+cast_to = Vector3( 0, -20, 0 )
+script = ExtResource( 11 )
+
+[node name="Shadow" type="Sprite3D" parent="PlayerShadow"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+opacity = 0.3
+texture = ExtResource( 9 )
+
 [node name="Ball" parent="." instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 30, -77 )
+
+[node name="RemoteTransform" type="RemoteTransform" parent="Ball"]
+remote_path = NodePath("../../BallShadow")
+update_rotation = false
+update_scale = false
+
+[node name="BallShadow" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 30, -77 )
+enabled = true
+cast_to = Vector3( 0, -50, 0 )
+script = ExtResource( 10 )
+
+[node name="Shadow" type="Sprite3D" parent="BallShadow"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 26, -76 )
+opacity = 0.85
+texture = ExtResource( 9 )
 
 [node name="CameraPivot" type="Spatial" parent="."]
 
@@ -48,14 +84,15 @@ far = 300.0
 
 [node name="Net" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+collision_mask = 2
+
+[node name="ScoreBoard" parent="." instance=ExtResource( 12 )]
 
 [node name="DirectionalLight2" type="DirectionalLight" parent="."]
 transform = Transform( 0.707107, 0.353553, -0.612373, 0, 0.866026, 0.5, 0.707107, -0.353553, 0.612373, -90, 80, 0 )
-light_energy = 0.75
 
 [node name="DirectionalLight3" type="DirectionalLight" parent="."]
 transform = Transform( 0.707107, -0.353553, 0.612373, 0, 0.866026, 0.5, -0.707107, -0.353553, 0.612373, 90, 80, 0 )
-light_energy = 0.75
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 2 )

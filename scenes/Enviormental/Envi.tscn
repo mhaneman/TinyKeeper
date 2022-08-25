@@ -1,30 +1,43 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://assets/meshes/envi/field_outline.obj" type="ArrayMesh" id=1]
-[ext_resource path="res://scenes/Enviormental/Floor.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/Enviormental/ScoreBoard.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/meshes/envi/field_lines.obj" type="ArrayMesh" id=1]
 [ext_resource path="res://assets/meshes/envi/benches.obj" type="ArrayMesh" id=5]
 [ext_resource path="res://assets/meshes/envi/goal.obj" type="ArrayMesh" id=6]
 [ext_resource path="res://assets/meshes/envi/moon/moon.glb" type="PackedScene" id=7]
 
+[sub_resource type="BoxShape" id=7]
+extents = Vector3( 150, 1, 150 )
+
+[sub_resource type="CubeMesh" id=8]
+size = Vector3( 300, 2, 300 )
+
+[sub_resource type="SpatialMaterial" id=9]
+albedo_color = Color( 0.513726, 0.909804, 0.623529, 1 )
+
+[sub_resource type="SpatialMaterial" id=6]
+
 [sub_resource type="SpatialMaterial" id=5]
 albedo_color = Color( 0.529412, 0.529412, 0.529412, 1 )
-metallic = 0.36
-roughness = 0.36
-rim_enabled = true
-rim = 1.0
-rim_tint = 0.54
 
 [sub_resource type="SpatialMaterial" id=4]
 
 [node name="Envi" type="Spatial"]
 
-[node name="Floor" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00180817, 3.8147e-06, -79.7686 )
+[node name="Floor" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -140 )
+collision_mask = 14
+
+[node name="CollisionShape" type="CollisionShape" parent="Floor"]
+shape = SubResource( 7 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Floor"]
+mesh = SubResource( 8 )
+material/0 = SubResource( 9 )
 
 [node name="FieldOutline" type="MeshInstance" parent="."]
 transform = Transform( -4.37114e-08, 0, 2, 0, 1, 0, -1, 0, -8.74228e-08, 0, 1.01, 0 )
 mesh = ExtResource( 1 )
+material/0 = SubResource( 6 )
 
 [node name="Benches" type="MeshInstance" parent="."]
 transform = Transform( -5.68248e-08, 0, 1, 0, 1.8, 0, -1.3, 0, -4.37114e-08, 0, 1, 0 )
@@ -38,6 +51,3 @@ material/0 = SubResource( 4 )
 
 [node name="moon" parent="." instance=ExtResource( 7 )]
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -200, 130, -250 )
-
-[node name="ScoreBoard" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 0.906308, -0.422618, 0, 0.422618, 0.906308, 0, 58, -79 )

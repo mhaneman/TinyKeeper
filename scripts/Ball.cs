@@ -7,6 +7,7 @@ public class Ball : RigidBody
 	Random rand = new Random();
 	
 	Vector3 inital_pos;
+	float speed_ratio = 3f;
 
 
 	public override void _Ready()
@@ -21,7 +22,7 @@ public class Ball : RigidBody
 		Vector3 curr_pos = this.GlobalTransform.origin;
 		
 		float dist = curr_pos.DistanceTo(Vector3.Zero);
-		float power = Mathf.Sqrt(dist) * 2.5f;
+		float power = Mathf.Sqrt(dist) * speed_ratio;
 		
 		Vector3 left = curr_pos.DirectionTo(new Vector3 (-16, 12, 0));
 		Vector3 right = curr_pos.DirectionTo(new Vector3 (16, 12, 0));
@@ -43,7 +44,7 @@ public class Ball : RigidBody
 	public void PassToPlayer(Vector3 otherPlayer)
 	{
 		float dist = this.GlobalTransform.origin.DistanceTo(otherPlayer);
-		float power = Mathf.Sqrt(dist) * 2f;
+		float power = Mathf.Sqrt(dist) * (speed_ratio - 1f);
 		Vector3 curr_pos = this.GlobalTransform.origin;
 		Vector3 dir = curr_pos.DirectionTo(otherPlayer);
 		dir.y = 0f;

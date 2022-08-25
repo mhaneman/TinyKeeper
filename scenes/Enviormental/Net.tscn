@@ -47,12 +47,16 @@ shape = SubResource( 4 )
 
 [node name="Scored" type="Area" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2 )
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape" type="CollisionShape" parent="Scored"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0 )
 shape = SubResource( 1 )
 
 [node name="Missed" type="Area" parent="."]
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape" type="CollisionShape" parent="Missed"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -37, 20, 2 )
@@ -68,6 +72,8 @@ shape = SubResource( 6 )
 
 [node name="GoalieZone" type="Area" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -7 )
+collision_layer = 0
+collision_mask = 3
 
 [node name="CollisionShape" type="CollisionShape" parent="GoalieZone"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 0 )
