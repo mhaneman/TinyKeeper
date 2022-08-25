@@ -77,13 +77,13 @@ texture = ExtResource( 9 )
 [node name="CameraPivot" type="Spatial" parent="."]
 
 [node name="Camera" type="Camera" parent="CameraPivot"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 17 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 11 )
 far = 300.0
 
 [node name="Envi" parent="." instance=ExtResource( 2 )]
 
 [node name="Net" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+transform = Transform( 0.75, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 collision_mask = 2
 
 [node name="ScoreBoard" parent="." instance=ExtResource( 12 )]

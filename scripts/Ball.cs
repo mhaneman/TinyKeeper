@@ -5,11 +5,8 @@ using System.Collections.Generic;
 public class Ball : RigidBody
 {
 	Random rand = new Random();
-	
 	Vector3 inital_pos;
-	float speed_ratio = 3f;
-
-
+	
 	public override void _Ready()
 	{
 		this.Connect("body_entered", this, "on_BodyEntered");
@@ -17,15 +14,15 @@ public class Ball : RigidBody
 		on_Reset();
 	}
 	
-	public void ShootAtGoal()
+	public void ShootAtGoal(float SpeedRatio)
 	{
 		Vector3 curr_pos = this.GlobalTransform.origin;
 		
 		float dist = curr_pos.DistanceTo(Vector3.Zero);
-		float power = Mathf.Sqrt(dist) * speed_ratio;
+		float power = Mathf.Pow(dist, 0.9f) * SpeedRatio;
 		
-		Vector3 left = curr_pos.DirectionTo(new Vector3 (-16, 12, 0));
-		Vector3 right = curr_pos.DirectionTo(new Vector3 (16, 12, 0));
+		Vector3 left = curr_pos.DirectionTo(new Vector3 (-12, 12, 0));
+		Vector3 right = curr_pos.DirectionTo(new Vector3 (12, 12, 0));
 		float w1 = (float) rand.NextDouble() * 0.1f;
 		float w2 = (float) rand.NextDouble() * 0.2f;
 		
@@ -41,10 +38,10 @@ public class Ball : RigidBody
 		this.ApplyImpulse(offset, impulse);
 	}
 	
-	public void PassToPlayer(Vector3 otherPlayer)
+	public void PassToPlayer(Vector3 otherPlayer, float SpeedRatio)
 	{
 		float dist = this.GlobalTransform.origin.DistanceTo(otherPlayer);
-		float power = Mathf.Sqrt(dist) * (speed_ratio - 1f);
+		float power = Mathf.Sqrt(dist) * 5f * SpeedRatio;
 		Vector3 curr_pos = this.GlobalTransform.origin;
 		Vector3 dir = curr_pos.DirectionTo(otherPlayer);
 		dir.y = 0f;

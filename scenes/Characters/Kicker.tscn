@@ -13,7 +13,6 @@ radius = 5.0
 
 [node name="Kicker" type="RigidBody"]
 collision_layer = 4
-collision_mask = 3
 mode = 1
 script = ExtResource( 2 )
 

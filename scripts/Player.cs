@@ -5,8 +5,8 @@ public class Player : KinematicBody
 {
 	private float gravity = 1f;
 	private float maxTermVel = 20f;
-	private float jumpPowerVirt = 40f;
-	private float jumpPowerHoriz = 42f;
+	private float jumpPowerVirt = 30f;
+	private float jumpPowerHoriz = 30f;
 	private float Friction = 0.2f;
 
 	private Vector3 velocity;

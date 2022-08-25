@@ -6,10 +6,13 @@ public class Kicker : RigidBody
 {
 	Random rand = new Random();
 	private Area footArea;
+	
+	public float Speed {get; set; }
 	public override void _Ready()
 	{
 		footArea = GetNode<Area>("FootArea");
 		footArea.Connect("body_entered", this, "on_BodyEntered");
+		Speed = ((EnemyTeam) GetParent()).Speed;
 	}
 	
 	private Vector3 getRandomKickerPos()
@@ -20,7 +23,7 @@ public class Kicker : RigidBody
 	
 	private bool shouldShoot(Vector3 a, Vector3 b)
 	{
-		return a.DistanceTo(b) < 10f;
+		return (((EnemyTeam) GetParent()).canPass() || a.DistanceTo(b) < 10f);
 	}
 	
 	/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
@@ -36,9 +39,9 @@ public class Kicker : RigidBody
 			Vector3 other = getRandomKickerPos();
 			
 			if (shouldShoot(other, ((RigidBody) body).GlobalTransform.origin))
-				((RigidBody) body).Call("ShootAtGoal");
+				((RigidBody) body).Call("ShootAtGoal", Speed);
 			else
-				((RigidBody) body).Call("PassToPlayer", other);
+				((RigidBody) body).Call("PassToPlayer", other, Speed);
 		}
 	}
 }
