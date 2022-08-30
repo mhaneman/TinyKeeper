@@ -85,7 +85,6 @@ public class Player : KinematicBody
 	{
 		/*
 		this.velocity = Vector3.Zero;
-
 		Transform t = new Transform();
 		t.origin = new Vector3(0f, 2f, -3f);
 		t.basis = Basis.Identity;
